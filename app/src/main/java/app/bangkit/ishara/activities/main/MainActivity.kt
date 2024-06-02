@@ -13,7 +13,6 @@ import app.bangkit.ishara.utils.ViewModelFactory
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    private val isLogin: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
