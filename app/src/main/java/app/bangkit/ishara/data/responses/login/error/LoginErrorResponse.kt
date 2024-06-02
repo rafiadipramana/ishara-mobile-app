@@ -1,8 +1,8 @@
-package app.bangkit.ishara.data.responses.error
+package app.bangkit.ishara.data.responses.login.error
 
 import com.google.gson.annotations.SerializedName
 
-data class ErrorResponse(
+data class LoginErrorResponse(
 
 	@field:SerializedName("meta")
 	val meta: Meta

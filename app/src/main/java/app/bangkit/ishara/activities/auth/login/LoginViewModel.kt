@@ -6,7 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import app.bangkit.ishara.data.preferences.UserPreference
 import app.bangkit.ishara.data.requests.LoginRequest
-import app.bangkit.ishara.data.responses.error.ErrorResponse
+import app.bangkit.ishara.data.responses.login.error.LoginErrorResponse
 import app.bangkit.ishara.data.retrofit.ApiConfig
 import com.google.gson.Gson
 import kotlinx.coroutines.launch
@@ -35,7 +35,7 @@ class LoginViewModel(private val pref: UserPreference) : ViewModel() {
             } catch (e: Exception) {
                 if (e is retrofit2.HttpException) {
                     val errorBody = e.response()?.errorBody()?.string()
-                    val errorResponse = Gson().fromJson(errorBody, ErrorResponse::class.java)
+                    val errorResponse = Gson().fromJson(errorBody, LoginErrorResponse::class.java)
                     _errorMessage.value = "Login failed: ${errorResponse.meta.error}"
                 } else {
                     _errorMessage.value = "Login failed: ${e.message}"

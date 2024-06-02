@@ -1,5 +1,8 @@
-package app.bangkit.ishara.data.responses
+package app.bangkit.ishara.data.responses.login
 
+import app.bangkit.ishara.data.responses.register.Data
+import app.bangkit.ishara.data.responses.register.Meta
+import app.bangkit.ishara.data.responses.register.Pagination
 import com.google.gson.annotations.SerializedName
 
 data class LoginResponse(
