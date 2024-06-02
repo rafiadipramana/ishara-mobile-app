@@ -29,6 +29,20 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         val pref = UserPreference.getInstance(application.dataStore)
         loginViewModel = ViewModelProvider(this, ViewModelFactory(pref))[LoginViewModel::class.java]
 
+        loginViewModel.isLoggedIn.observe(this) { isLoggedIn ->
+            if (isLoggedIn) {
+                val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
+        }
+
+        loginViewModel.errorMessage.observe(this) { errorMessage ->
+            if (!errorMessage.isNullOrEmpty()) {
+                Toast.makeText(this@LoginActivity, errorMessage, Toast.LENGTH_SHORT).show()
+            }
+        }
+
         binding.buttonLogin.setOnClickListener(this)
         binding.textViewButtonRegister.setOnClickListener(this)
     }
@@ -38,15 +52,25 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
             R.id.buttonLogin -> {
                 val email = binding.editTextEmail.text.toString()
                 val password = binding.editTextPassword.text.toString()
-                loginViewModel.login(email, password)
-                if (loginViewModel.isLoggedIn.value == true) {
-                    val intent = Intent(this@LoginActivity, MainActivity::class.java)
-                    startActivity(intent)
-                    finish()
-                } else {
-                    Toast.makeText(this, "Login Failed", Toast.LENGTH_SHORT).show()
+
+                if (email.isEmpty()) {
+                    binding.editTextEmail.error = "Email tidak boleh kosong"
+                    return
                 }
+
+                if (password.isEmpty()) {
+                    binding.editTextPassword.error = "Password tidak boleh kosong"
+                    return
+                }
+
+                if (password.length < 8) {
+                    binding.editTextPassword.error = "Password minimal 8 karakter"
+                    return
+                }
+
+                loginViewModel.login(email, password)
             }
+
             R.id.textViewButtonRegister -> {
                 val intent = Intent(this@LoginActivity, RegisterActivity::class.java)
                 startActivity(intent)

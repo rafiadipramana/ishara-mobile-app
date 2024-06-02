@@ -12,7 +12,7 @@ class MainViewModel(private val pref: UserPreference) : ViewModel() {
         return pref.getUserLoginStatus().asLiveData()
     }
 
-    fun saveUserLoginStatus(isLogin: Boolean) {
+    suspend fun saveUserLoginStatus(isLogin: Boolean) {
         viewModelScope.launch {
             pref.saveUserLoginStatus(isLogin)
         }
