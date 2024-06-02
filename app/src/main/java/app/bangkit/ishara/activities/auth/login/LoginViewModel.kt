@@ -5,6 +5,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import app.bangkit.ishara.data.preferences.UserPreference
+import app.bangkit.ishara.data.requests.LoginRequest
+import app.bangkit.ishara.data.retrofit.ApiConfig
 import kotlinx.coroutines.launch
 
 class LoginViewModel(private val pref: UserPreference) : ViewModel() {
@@ -12,13 +14,13 @@ class LoginViewModel(private val pref: UserPreference) : ViewModel() {
     val isLoggedIn: LiveData<Boolean> get() = _isLoggedIn
 
     fun login(username: String, password: String) {
-        if (username == "admin" && password == "password") {
-            viewModelScope.launch {
-                pref.saveUserLoginStatus(true)
-                _isLoggedIn.postValue(true)
+        viewModelScope.launch {
+            try {
+                val loginRequest = LoginRequest(username, password)
+                val response = ApiConfig.getApiService().login(loginRequest)
+            } catch (e: Exception) {
+
             }
-        } else {
-            _isLoggedIn.value = false
         }
     }
 }
