@@ -11,66 +11,170 @@
         android:id="@+id/textViewTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:gravity="center"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:gravity="start"
         android:text="Login"
-        android:textSize="20sp"
+        android:fontFamily="@font/sora_bold"
+        android:textSize="32sp"
         android:textStyle="bold"
+        android:textColor="@color/lightBlue"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.2" />
 
+    <TextView
+        android:id="@+id/textViewGreeting"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="12dp"
+        android:gravity="start"
+        android:text="Masuk untuk belajar bersama!"
+        android:fontFamily="@font/sora_regular"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textViewTitle"
+        app:layout_constraintVertical_bias="0.2" />
+
+    <TextView
+        android:id="@+id/textViewEmailLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="20dp"
+        android:gravity="start"
+        android:text="Email"
+        android:textColor="@color/orange"
+        android:fontFamily="@font/sora_semi_bold"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textViewGreeting"
+        app:layout_constraintVertical_bias="0.2" />
+
     <EditText
         android:id="@+id/editTextEmail"
+        android:background="@drawable/rounded_background"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:layout_marginTop="10dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
         android:ems="10"
         android:inputType="textEmailAddress"
         android:hint="Email"
+        android:fontFamily="@font/sora_regular"
+        android:drawableStart="@drawable/ic_email_baseline24"
+        android:drawablePadding="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textViewTitle" />
+        app:layout_constraintTop_toBottomOf="@id/textViewEmailLabel" />
+
+    <TextView
+        android:id="@+id/textViewPasswordLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="16dp"
+        android:gravity="start"
+        android:text="Password"
+        android:textColor="@color/orange"
+        android:fontFamily="@font/sora_semi_bold"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/editTextEmail"
+        app:layout_constraintVertical_bias="0.2" />
 
     <EditText
         android:id="@+id/editTextPassword"
+        android:background="@drawable/rounded_background"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:layout_marginTop="10dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
         android:ems="10"
         android:inputType="textPassword"
         android:hint="Password"
+        android:fontFamily="@font/sora_regular"
+        android:drawableStart="@drawable/ic_password_baseline24"
+        android:drawableEnd="@drawable/ic_show_baseline24"
+        android:drawablePadding="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextEmail" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewPasswordLabel" />
+
+    <Button
+        android:id="@+id/textViewForgotPassword"
+        style="@style/Widget.Material3.Button.TextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Lupa kata sandi?"
+        android:textColor="@color/black"
+        android:clickable="true"
+        android:focusable="true"
+        android:fontFamily="@font/sora_regular"
+        app:layout_constraintEnd_toEndOf="@+id/editTextPassword"
+        app:layout_constraintTop_toBottomOf="@+id/editTextPassword" />
 
     <Button
         android:id="@+id/buttonLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="30dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
         android:text="Login"
+        android:fontFamily="@font/sora_bold"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextPassword" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewForgotPassword" />
 
-    <TextView
-        android:id="@+id/textViewButtonRegister"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Register"
-        android:clickable="true"
-        android:focusable="true"
-        app:layout_constraintEnd_toEndOf="@+id/buttonLogin"
-        app:layout_constraintTop_toBottomOf="@+id/buttonLogin" />
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        app:layout_constraintTop_toBottomOf="@id/buttonLogin"
+        app:layout_constraintStart_toStartOf="@id/buttonLogin"
+        app:layout_constraintEnd_toEndOf="@id/buttonLogin" >
+
+        <TextView
+            android:id="@+id/textViewRegisterGuide"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:fontFamily="@font/sora_regular"
+            android:text="Belum punya akun?" />
+
+        <TextView
+            android:id="@+id/textViewButtonRegister"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:fontFamily="@font/sora_bold"
+            android:text="Daftar"
+            android:textColor="@color/orange" />
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
