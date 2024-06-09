@@ -1,4 +1,4 @@
-package app.bangkit.ishara.activities.main
+package app.bangkit.ishara.ui.main
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel

@@ -2,8 +2,8 @@ package app.bangkit.ishara.utils
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import app.bangkit.ishara.activities.auth.login.LoginViewModel
-import app.bangkit.ishara.activities.main.MainViewModel
+import app.bangkit.ishara.ui.auth.login.LoginViewModel
+import app.bangkit.ishara.ui.main.MainViewModel
 import app.bangkit.ishara.data.preferences.UserPreference
 
 class ViewModelFactory(private val pref: UserPreference) : ViewModelProvider.NewInstanceFactory() {

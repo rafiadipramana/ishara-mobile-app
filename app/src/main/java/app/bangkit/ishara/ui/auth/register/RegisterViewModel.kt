@@ -1,4 +1,4 @@
-package app.bangkit.ishara.activities.auth.register
+package app.bangkit.ishara.ui.auth.register
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

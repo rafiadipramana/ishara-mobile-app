@@ -1,11 +1,27 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Base.Theme.Ishara" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
+    <style name="Base.Theme.Ishara.NoActionBar" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="colorPrimary">@color/lightBlue</item>
         <item name="colorSecondary">@color/orange</item>
         <item name="colorTertiary">@color/darkBlue</item>
     </style>
 
-    <style name="Theme.Ishara" parent="Base.Theme.Ishara" />
+    <style name="Base.Theme.Ishara.ActionBar" parent="Theme.Material3.DayNight">
+        <item name="colorPrimary">@color/lightBlue</item>
+        <item name="colorSecondary">@color/orange</item>
+        <item name="colorTertiary">@color/darkBlue</item>
+    </style>
+
+    <style name="CustomToolbar" parent="TextAppearance.Material3.TitleLarge">
+        <item name="fontFamily">@font/sora_bold</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="CustomBottomNavbar.Item" parent="TextAppearance.Material3.TitleSmall">
+        <item name="fontFamily">@font/sora_bold</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="Theme.Ishara.NoActionBar" parent="Base.Theme.Ishara.NoActionBar" />
+
+    <style name="Theme.Ishara.ActionBar" parent="Base.Theme.Ishara.ActionBar" />
 </resources>
