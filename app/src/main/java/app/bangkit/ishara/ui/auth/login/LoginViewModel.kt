@@ -1,4 +1,4 @@
-package app.bangkit.ishara.activities.auth.login
+package app.bangkit.ishara.ui.auth.login
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
