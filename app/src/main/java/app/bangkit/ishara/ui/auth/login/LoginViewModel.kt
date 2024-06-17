@@ -1,5 +1,6 @@
 package app.bangkit.ishara.ui.auth.login
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.MutableLiveData
@@ -29,6 +30,9 @@ class LoginViewModel(private val pref: UserPreference) : ViewModel() {
                 val response = ApiConfig.getApiService().login(loginRequest)
                 if (response.meta.success) {
                     pref.saveUserLoginStatus(true)
+                    pref.saveJwtAccessToken(response.token)
+                    Log.d(TAG, "JWT Token : ${response.token}")
+                    Log.d(TAG, "Login success")
                     _isLoggedIn.value = true
                 }
                 _isLoading.value = false
@@ -43,5 +47,9 @@ class LoginViewModel(private val pref: UserPreference) : ViewModel() {
                 _isLoading.value = false
             }
         }
+    }
+
+    companion object {
+        private const val TAG = "LoginViewModel"
     }
 }

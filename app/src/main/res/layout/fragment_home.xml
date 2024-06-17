@@ -26,50 +26,64 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
-            app:cardCornerRadius="22dp" >
+            app:cardCornerRadius="22dp"
+            app:cardBackgroundColor="@color/blue" >
 
-            <LinearLayout
-                android:background="@color/blue"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingTop="20dp"
-                android:paddingStart="22dp"
-                android:paddingEnd="22dp"
-                android:paddingBottom="20dp"
-                android:orientation="vertical">
+                android:layout_height="match_parent">
 
-                <TextView
+                <ImageView
+                    android:adjustViewBounds="true"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="24sp"
-                    android:text="Abjad 1"
-                    android:textColor="@color/white"
-                    android:fontFamily="@font/sora_bold" />
+                    android:layout_height="0dp"
+                    android:src="@drawable/banner_thumbnail"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"/>
 
-                <TextView
-                    android:layout_marginTop="8dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="14sp"
-                    android:text="Belajar isyarat untuk\nabjad a,b,c,d,e"
-                    android:textColor="@color/white"
-                    android:fontFamily="@font/sora_regular" />
-
-                <com.google.android.material.button.MaterialButton
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="56dp"
-                    android:textAlignment="textStart"
-                    app:backgroundTint="@color/orange"
-                    android:textSize="12sp"
-                    android:text="Lanjutkan Belajar"
-                    android:fontFamily="@font/sora_bold" />
+                    android:paddingTop="20dp"
+                    android:paddingStart="22dp"
+                    android:paddingEnd="22dp"
+                    android:paddingBottom="20dp"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
 
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="24sp"
+                        android:text="Abjad 1"
+                        android:textColor="@color/white"
+                        android:fontFamily="@font/sora_bold" />
 
-            </LinearLayout>
+                    <TextView
+                        android:layout_marginTop="8dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:text="Belajar isyarat untuk\nabjad a,b,c,d,e"
+                        android:textColor="@color/white"
+                        android:fontFamily="@font/sora_regular" />
 
+                    <com.google.android.material.button.MaterialButton
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="56dp"
+                        android:textAlignment="textStart"
+                        app:backgroundTint="@color/orange"
+                        android:textSize="12sp"
+                        android:text="Lanjutkan Belajar"
+                        android:fontFamily="@font/sora_bold"
+                        android:drawableEnd="@drawable/ic_arrow_right_baseline24" />
+                </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
-
     </LinearLayout>
 
 </ScrollView>
