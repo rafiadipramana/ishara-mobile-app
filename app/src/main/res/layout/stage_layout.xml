@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="17dp"
+    android:layout_marginHorizontal="20dp"
+    app:cardCornerRadius="22dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/blue">
+
+        <TextView
+            android:id="@+id/tvStageName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="26dp"
+            android:layout_marginStart="14dp"
+            tools:text="Abjad 1"
+            android:textSize="16sp"
+            android:fontFamily="@font/sora_bold"
+            android:textColor="@color/white"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvStageDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Belajar isyarat untuk\nabjad a,b,c,d,e"
+            android:textSize="12sp"
+            android:fontFamily="@font/sora_regular"
+            android:textColor="@color/white"
+            app:layout_constraintStart_toStartOf="@id/tvStageName"
+            app:layout_constraintTop_toBottomOf="@id/tvStageName" />
+
+        <ImageView
+            android:id="@+id/ivStageThumbnail"
+            android:layout_width="wrap_content"
+            android:layout_height="120dp"
+            android:adjustViewBounds="true"
+            android:src="@drawable/stage_thumbnail"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

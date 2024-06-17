@@ -7,4 +7,9 @@
     <color name="lightBlue">#37719E</color>"
     <color name="blue">#6DA7D4</color>
     <color name="darkBlue">#004D8A</color>
+    <color name="grey">#545454</color>
+    <color name="red">#F31B15</color>
+    <color name="purple">#D039F7</color>
+    <color name="bronze">#FDCF31</color>
+    <color name="lightGrey">#979797</color>
 </resources>
