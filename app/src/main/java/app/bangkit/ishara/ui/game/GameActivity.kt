@@ -67,18 +67,14 @@ class GameActivity : AppCompatActivity() {
                     runOnUiThread {
                         if (isHandDetected && !results.isNullOrEmpty() && results[0].categories.isNotEmpty()) {
                             val sortedCategories = results[0].categories.sortedByDescending { it.score }
-
                             checkLetter(sortedCategories[0].label[0])
-
                             val topThreeCategories = sortedCategories.take(3)
                             val displayResult = topThreeCategories.joinToString("\n") {
                                 "${it.label} " + NumberFormat.getPercentInstance().format(it.score).trim()
                             }
-
                             binding.tvResult.text = displayResult
                             binding.tvInferenceTime.text = "$inferenceTime ms"
                         } else {
-                            // If hand is not detected or results are empty, clear the display
                             binding.tvResult.text = ""
                             binding.tvInferenceTime.text = ""
                         }

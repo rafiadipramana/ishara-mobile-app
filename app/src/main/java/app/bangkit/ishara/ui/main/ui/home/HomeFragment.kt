@@ -1,18 +1,20 @@
 package app.bangkit.ishara.ui.main.ui.home
 
-import TodaySignAdapter
+import android.content.Intent
+import app.bangkit.ishara.domain.adapter.TodaySignAdapter
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import app.bangkit.ishara.R
 import app.bangkit.ishara.data.preferences.UserPreference
 import app.bangkit.ishara.data.preferences.dataStore
 import app.bangkit.ishara.databinding.FragmentHomeBinding
-import kotlinx.coroutines.coroutineScope
+import app.bangkit.ishara.ui.main.ui.journey.JourneyFragment
 
 
 data class TodaySign(
@@ -24,9 +26,6 @@ data class TodaySign(
 class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
     private var pref: UserPreference? = null
 
@@ -39,7 +38,7 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         val homeViewModel =
-            ViewModelProvider(this).get(HomeViewModel::class.java)
+            ViewModelProvider(this)[HomeViewModel::class.java]
 
         pref = UserPreference.getInstance(requireActivity().application.dataStore)
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
@@ -49,6 +48,10 @@ class HomeFragment : Fragment() {
 //        homeViewModel.completedAlphabet.observe(viewLifecycleOwner) {
 //            textView.text = it
 //        }
+
+        binding.btnStartLearning.setOnClickListener {
+            findNavController().navigate(R.id.navigateHometoJourney)
+        }
 
         todaySignsList = prepareTodaySigns()
         binding.rvTodaySign.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)

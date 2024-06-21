@@ -5,13 +5,17 @@ import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.NavController
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import app.bangkit.ishara.R
 import app.bangkit.ishara.data.preferences.UserPreference
@@ -27,6 +31,7 @@ class MainScreenActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainScreenBinding
     private lateinit var userPreference: UserPreference
+    private lateinit var navController: NavController
 
     @RequiresApi(Build.VERSION_CODES.S)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,10 +47,32 @@ class MainScreenActivity : AppCompatActivity() {
             requestPermissionLauncher.launch(REQUIRED_PERMISSION)
         }
 
-        val navView: BottomNavigationView = binding.navView
+        binding.topAppBar.setNavigationOnClickListener {
+            navController.navigate(R.id.navigation_home)
+        }
 
-        val navController = findNavController(R.id.nav_host_fragment_activity_main2)
-        navView.setupWithNavController(navController)
+        setSupportActionBar(binding.topAppBar)
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment_activity_main2) as NavHostFragment
+        navController = navHostFragment.navController
+
+//        val navView: BottomNavigationView = binding.navView
+//        val navController = findNavController(R.id.nav_host_fragment_activity_main2)
+//        navView.setupWithNavController(navController)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.action_menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_profile -> {
+                navController.navigate(R.id.navigation_profile)
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 
     private suspend fun refreshAccessToken() {

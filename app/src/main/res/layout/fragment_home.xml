@@ -11,16 +11,15 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-<!--        <TextView-->
-<!--            android:id="@+id/text_home"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginStart="20dp"-->
-<!--            android:layout_marginTop="20dp"-->
-<!--            android:textAlignment="textStart"-->
-<!--            android:textSize="24sp"-->
-<!--            android:text="Mari Belajar Bahasa\nIsyarat Bersama"-->
-<!--            android:fontFamily="@font/sora_bold" />-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:textAlignment="textStart"
+            android:textSize="24sp"
+            android:text="Mari Belajar Bahasa\nIsyarat Bersama"
+            android:fontFamily="@font/sora_bold" />
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
@@ -55,10 +54,11 @@
                     app:layout_constraintTop_toTopOf="parent">
 
                     <TextView
+                        android:id="@+id/tv_hello"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="24sp"
-                        android:text="Abjad 1"
+                        android:text="Hello, haidar"
                         android:textColor="@color/white"
                         android:fontFamily="@font/sora_bold" />
 
@@ -67,18 +67,19 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="14sp"
-                        android:text="Belajar isyarat untuk\nabjad a,b,c,d,e"
+                        android:text="Belajar isyarat Dengan Seru\ndan Mengasyikkan"
                         android:textColor="@color/white"
                         android:fontFamily="@font/sora_regular" />
 
                     <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_start_learning"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="56dp"
                         android:textAlignment="textStart"
                         app:backgroundTint="@color/orange"
                         android:textSize="12sp"
-                        android:text="Lanjutkan Belajar"
+                        android:text="Mulai Belajar"
                         android:fontFamily="@font/sora_bold"
                         android:drawableEnd="@drawable/ic_arrow_right_baseline24" />
                 </LinearLayout>

@@ -1,3 +1,5 @@
+package app.bangkit.ishara.domain.adapter
+
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
