@@ -1,5 +1,6 @@
 package app.bangkit.ishara.ui.main.ui.profile
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -13,6 +14,7 @@ import androidx.lifecycle.lifecycleScope
 import app.bangkit.ishara.data.preferences.UserPreference
 import app.bangkit.ishara.data.preferences.dataStore
 import app.bangkit.ishara.databinding.FragmentProfileBinding
+import app.bangkit.ishara.ui.auth.login.LoginActivity
 import kotlinx.coroutines.launch
 
 class ProfileFragment : Fragment() {
@@ -58,6 +60,14 @@ class ProfileFragment : Fragment() {
                 binding.tvEmail.text = it.data?.email
                 binding.tvTotalStars.text = it.data?.totalStars.toString()
             }
+        }
+
+
+        binding.btnLogout.setOnClickListener {
+            val intent = Intent(requireContext(), LoginActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
+            requireActivity().finish()
         }
 
     }
