@@ -61,6 +61,9 @@ data class LevelsItem(
 	@field:SerializedName("id")
 	val id: Int,
 
+	@field:SerializedName("is_stage_unlocked")
+	val isStageUnlocked: Boolean?,
+
 	@field:SerializedName("user_level_star")
 	val userLevelStar: UserLevelStar?
 )

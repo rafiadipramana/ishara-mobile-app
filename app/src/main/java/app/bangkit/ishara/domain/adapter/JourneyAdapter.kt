@@ -38,13 +38,17 @@ class JourneyAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     ): RecyclerView.ViewHolder {
         return when (viewType) {
             VIEW_TYPE_JOURNEY -> {
-                val binding = StageLayoutBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+                val binding =
+                    StageLayoutBinding.inflate(LayoutInflater.from(parent.context), parent, false)
                 JourneyViewHolder(binding)
             }
+
             VIEW_TYPE_LEVEL -> {
-                val binding = LevelLayoutBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+                val binding =
+                    LevelLayoutBinding.inflate(LayoutInflater.from(parent.context), parent, false)
                 LevelViewHolder(binding)
             }
+
             else -> throw IllegalArgumentException("Unknown view type: $viewType")
         }
     }
@@ -58,6 +62,7 @@ class JourneyAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                 holder.bind(journeyItem)
                 holder.itemView.setOnClickListener { onItemClickCallback.onItemClicked(journeyItem) }
             }
+
             is LevelViewHolder -> {
                 val levelItem = items[position] as Item.LevelItem
                 holder.bind(levelItem)
@@ -66,28 +71,38 @@ class JourneyAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         }
     }
 
-    class JourneyViewHolder(private val binding: StageLayoutBinding) : RecyclerView.ViewHolder(binding.root) {
+    class JourneyViewHolder(private val binding: StageLayoutBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
         fun bind(journeyItem: Item.StageItem) {
             binding.tvStageName.text = journeyItem.stageData.name
             binding.tvStageDescription.text = journeyItem.stageData.description
+            if (journeyItem.stageData.isUnlocked) {
+                binding.cardViewStageItem.setCardBackgroundColor(itemView.context.getColor(R.color.blue))
+            } else {
+                binding.cardViewStageItem.setCardBackgroundColor(itemView.context.getColor(R.color.grey))
+            }
         }
     }
 
-    class LevelViewHolder(private val binding: LevelLayoutBinding) : RecyclerView.ViewHolder(binding.root) {
+    class LevelViewHolder(private val binding: LevelLayoutBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
         private val starContainer: LinearLayout = binding.starContainer
 
         fun bind(levelItem: Item.LevelItem) {
-            if (levelItem.levelData.id == 1) {
-                starContainer.removeAllViews()
+            starContainer.removeAllViews()
 
-                val numberOfStars = levelItem.levelData.userLevelStar?.obtainedStars
-                val maxStars = 5
-                val starWidth = itemView.context.resources.getDimensionPixelSize(R.dimen.star_image_width)
-                val starMarginStart = itemView.context.resources.getDimensionPixelSize(R.dimen.star_image_margin_start)
+            val numberOfStars = levelItem.levelData.userLevelStar?.obtainedStars
+            val maxStars = 5
+            val starWidth =
+                itemView.context.resources.getDimensionPixelSize(R.dimen.star_image_width)
+            val starMarginStart =
+                itemView.context.resources.getDimensionPixelSize(R.dimen.star_image_margin_start)
 
+            if (levelItem.levelData.isStageUnlocked == true) {
                 if (numberOfStars != null) {
+                    binding.cvLevel.setCardBackgroundColor(itemView.context.getColor(R.color.orange))
                     for (i in 0 until numberOfStars) {
                         val starActiveImageView = ImageView(itemView.context)
                         val params = LinearLayout.LayoutParams(
@@ -114,10 +129,11 @@ class JourneyAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
                         starContainer.addView(starInactiveImageView)
                     }
+                } else {
+                    binding.cvLevel.setCardBackgroundColor(itemView.context.getColor(R.color.lightGrey))
                 }
             } else {
-                val context = binding.root.context
-                binding.cvLevel.setCardBackgroundColor(context.getColor(R.color.lightGrey))
+                binding.cvLevel.setCardBackgroundColor(itemView.context.getColor(R.color.grey))
             }
 
             binding.tvLevelName.text = levelItem.levelData.name
