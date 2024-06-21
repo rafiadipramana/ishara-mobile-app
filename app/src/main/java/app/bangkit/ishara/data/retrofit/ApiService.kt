@@ -22,7 +22,7 @@ interface ApiService {
         @Body registerRequest: RegisterRequest
     ): RegisterResponse
 
-    @GET("api/v1/auth/refresh-token")
+    @POST("api/v1/auth/refresh-token")
     suspend fun refreshToken(
         @Header("Authorization") token: String
     ): RefreshTokenResponse
@@ -31,6 +31,4 @@ interface ApiService {
     suspend fun getAllJourney(
         @Header("Authorization") token: String
     ): JourneyResponse
-
-
 }

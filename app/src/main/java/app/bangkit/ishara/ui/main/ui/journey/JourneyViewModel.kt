@@ -10,6 +10,7 @@ import app.bangkit.ishara.data.preferences.UserPreference
 import app.bangkit.ishara.data.preferences.dataStore
 import app.bangkit.ishara.data.requests.LoginRequest
 import app.bangkit.ishara.data.responses.journey.DataItem
+import app.bangkit.ishara.data.responses.journey.LevelsItem
 import app.bangkit.ishara.data.responses.login.error.LoginErrorResponse
 import app.bangkit.ishara.data.retrofit.ApiConfig
 import app.bangkit.ishara.ui.auth.login.LoginViewModel
@@ -30,7 +31,7 @@ class JourneyViewModel : ViewModel() {
         _isLoading.value = true
         viewModelScope.launch {
             try {
-                val response = ApiConfig.getApiService().getAllJourney(jwtAccessToken)
+                val response = ApiConfig.getApiService().getAllJourney("Bearer $jwtAccessToken")
                 if (response.meta.success) {
                     Log.d(TAG, "Get Journey success")
                     val journeyItems = mutableListOf<Item>()
@@ -38,7 +39,16 @@ class JourneyViewModel : ViewModel() {
                         Log.d(TAG, "Stages data: $stagesData")
                         journeyItems.add(Item.StageItem(stagesData.copy()))
                         Log.d(TAG, "Journey items: $journeyItems")
-                        journeyItems.addAll(stagesData.levels.map { levelData -> Item.LevelItem(levelData.copy()) })
+                        journeyItems.addAll(stagesData.levels.map { levelData ->
+                            Item.LevelItem(
+                                LevelsItem(
+                                    name = levelData.name,
+                                    id = levelData.id,
+                                    isStageUnlocked = stagesData.isUnlocked,
+                                    userLevelStar = levelData.userLevelStar,
+                                )
+                            )
+                        })
                     }
                     _journeyList.postValue(journeyItems) // Use postValue to update LiveData from a background thread
                     Log.d(TAG, "Journey list: ${_journeyList.value}")

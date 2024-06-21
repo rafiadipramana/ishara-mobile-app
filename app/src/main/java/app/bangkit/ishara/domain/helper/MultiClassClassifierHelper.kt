@@ -15,49 +15,51 @@ import org.tensorflow.lite.support.image.TensorImage
 import org.tensorflow.lite.support.image.ops.ResizeOp
 import org.tensorflow.lite.task.core.BaseOptions
 import org.tensorflow.lite.task.core.vision.ImageProcessingOptions
-import org.tensorflow.lite.task.vision.detector.ObjectDetector
+import org.tensorflow.lite.task.vision.classifier.Classifications
+import org.tensorflow.lite.task.vision.classifier.ImageClassifier
 
-class DetectionHelper(
-    var threshold: Float = 0.5f,
-    val modelName: String = "binary_model.tflite",
+class MultiClassClassifierHelper(
+    var threshold: Float = 0.1f,
+    var maxResults: Int = 3,
+    val modelName: String = "multiclass_model.tflite",
     val context: Context,
-    val detectionListener: DetectionListener?
+    val classifierListener: ClassifierListener?
 ) {
-    private var detector: ObjectDetector? = null
+    private var classifier: ImageClassifier? = null
 
     init {
-        setupObjectDetector()
+        setupImageClassifier()
     }
 
-    private fun setupObjectDetector() {
-        val optionsBuilder = ObjectDetector.ObjectDetectorOptions.builder()
+    private fun setupImageClassifier() {
+        val optionsBuilder = ImageClassifier.ImageClassifierOptions.builder()
             .setScoreThreshold(threshold)
-            .setMaxResults(5)
+            .setMaxResults(maxResults)
         val baseOptionsBuilder = BaseOptions.builder()
             .setNumThreads(4)
         optionsBuilder.setBaseOptions(baseOptionsBuilder.build())
 
         try {
-            detector = ObjectDetector.createFromFileAndOptions(
+            classifier = ImageClassifier.createFromFileAndOptions(
                 context,
                 modelName,
                 optionsBuilder.build()
             )
         } catch (e: IllegalStateException) {
-            detectionListener?.onError(context.getString(R.string.image_classifier_failed))
+            classifierListener?.onError(context.getString(R.string.image_classifier_failed))
             Log.e(TAG, e.message.toString())
         }
     }
 
-    fun detectImage(image: ImageProxy) {
+    fun classifyImage(image: ImageProxy) {
 
-        if (detector == null) {
-            setupObjectDetector()
+        if (classifier == null) {
+            setupImageClassifier()
         }
 
         val imageProcessor = ImageProcessor.Builder()
             .add(ResizeOp(224, 224, ResizeOp.ResizeMethod.BILINEAR))
-            .add(NormalizeOp(0.0f, 255.0f))
+            .add(NormalizeOp(0.0f, 1.0f))
             .add(CastOp(DataType.FLOAT32))
             .build()
 
@@ -68,9 +70,9 @@ class DetectionHelper(
             .build()
 
         var inferenceTime = SystemClock.uptimeMillis()
-        val results = detector?.detect(tensorImage, imageProcessingOptions)
+        val results = classifier?.classify(tensorImage, imageProcessingOptions)
         inferenceTime = SystemClock.uptimeMillis() - inferenceTime
-        detectionListener?.onResults(
+        classifierListener?.onResults(
             results,
             inferenceTime
         )
@@ -96,15 +98,15 @@ class DetectionHelper(
         }
     }
 
-    interface DetectionListener {
+    interface ClassifierListener {
         fun onError(error: String)
         fun onResults(
-            results: MutableList<org.tensorflow.lite.task.vision.detector.Detection>?,
+            results: List<Classifications>?,
             inferenceTime: Long
         )
     }
 
     companion object {
-        private const val TAG = "DetectionHelper"
+        private const val TAG = "ImageClassifierHelper"
     }
 }

@@ -18,10 +18,10 @@ import org.tensorflow.lite.task.core.vision.ImageProcessingOptions
 import org.tensorflow.lite.task.vision.classifier.Classifications
 import org.tensorflow.lite.task.vision.classifier.ImageClassifier
 
-class ClassifierHelper(
+class BinaryClassifierHelper(
     var threshold: Float = 0.1f,
     var maxResults: Int = 3,
-    val modelName: String = "multiclass_model.tflite",
+    val modelName: String = "binary_model.tflite",
     val context: Context,
     val classifierListener: ClassifierListener?
 ) {
@@ -107,6 +107,6 @@ class ClassifierHelper(
     }
 
     companion object {
-        private const val TAG = "ImageClassifierHelper"
+        private const val TAG = "BinaryClassifierHelper"
     }
 }
