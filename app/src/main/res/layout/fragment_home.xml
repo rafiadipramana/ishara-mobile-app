@@ -11,16 +11,16 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/text_home"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
-            android:textAlignment="textStart"
-            android:textSize="24sp"
-            android:text="Mari Belajar Bahasa\nIsyarat Bersama"
-            android:fontFamily="@font/sora_bold" />
+<!--        <TextView-->
+<!--            android:id="@+id/text_home"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginStart="20dp"-->
+<!--            android:layout_marginTop="20dp"-->
+<!--            android:textAlignment="textStart"-->
+<!--            android:textSize="24sp"-->
+<!--            android:text="Mari Belajar Bahasa\nIsyarat Bersama"-->
+<!--            android:fontFamily="@font/sora_bold" />-->
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
@@ -84,6 +84,23 @@
                 </LinearLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Isyarat BISINDO"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginStart="20dp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_today_sign"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:orientation="horizontal" />
     </LinearLayout>
 
 </ScrollView>

@@ -138,14 +138,13 @@ class GameActivity : AppCompatActivity() {
         val currentTime = System.currentTimeMillis()
 
         runOnUiThread {
-            if (letter == quizLetter[0]) {
+            if (quizLetter.isNotEmpty() && letter == quizLetter[0]) {
                 showToast("Benar!")
             } else {
                 showToast("Salah!")
             }
         }
     }
-
 
     private fun hideSystemUI() {
         @Suppress("DEPRECATION")
