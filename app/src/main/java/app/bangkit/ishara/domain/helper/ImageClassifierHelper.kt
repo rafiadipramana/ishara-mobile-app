@@ -19,7 +19,7 @@ import org.tensorflow.lite.task.vision.classifier.Classifications
 import org.tensorflow.lite.task.vision.classifier.ImageClassifier
 
 class ImageClassifierHelper(
-    var threshold: Float = 0.1f,
+    var threshold: Float = 0.8f,
     var multiClassMaxResults: Int = 3,
     val binaryModelName: String = "binary_model.tflite",
     val multiClassModelName: String = "multiclass_model.tflite",
