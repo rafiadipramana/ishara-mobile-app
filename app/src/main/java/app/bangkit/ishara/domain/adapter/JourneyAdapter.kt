@@ -28,7 +28,7 @@ class JourneyAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     override fun getItemViewType(position: Int): Int {
         return when (items[position]) {
             is Item.StageItem -> VIEW_TYPE_JOURNEY
-            is Item.LevelItem -> VIEW_TYPE_LEVEL
+            is Item.StageLevelItem -> VIEW_TYPE_LEVEL
         }
     }
 
@@ -64,7 +64,7 @@ class JourneyAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             }
 
             is LevelViewHolder -> {
-                val levelItem = items[position] as Item.LevelItem
+                val levelItem = items[position] as Item.StageLevelItem
                 holder.bind(levelItem)
                 holder.itemView.setOnClickListener { onItemClickCallback.onItemClicked(levelItem) }
             }
@@ -90,7 +90,7 @@ class JourneyAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
         private val starContainer: LinearLayout = binding.starContainer
 
-        fun bind(levelItem: Item.LevelItem) {
+        fun bind(levelItem: Item.StageLevelItem) {
             starContainer.removeAllViews()
 
             val numberOfStars = levelItem.levelData.userLevelStar?.obtainedStars

@@ -4,11 +4,11 @@ import app.bangkit.ishara.data.requests.LoginRequest
 import app.bangkit.ishara.data.requests.RegisterRequest
 import app.bangkit.ishara.data.responses.auth.RefreshTokenResponse
 import app.bangkit.ishara.data.responses.journey.JourneyResponse
-import app.bangkit.ishara.data.responses.journey.LevelResponse
-import app.bangkit.ishara.data.responses.journey.QuestionResponse
+import app.bangkit.ishara.data.responses.journey.level.LevelResponse
+import app.bangkit.ishara.data.responses.journey.question.QuestionResponse
 import app.bangkit.ishara.data.responses.login.LoginResponse
 import app.bangkit.ishara.data.responses.profile.ProfileResponse
-import app.bangkit.ishara.data.responses.profile.StarsResponse
+import app.bangkit.ishara.data.responses.profile.star.StarsResponse
 import app.bangkit.ishara.data.responses.register.RegisterResponse
 import retrofit2.http.Body
 import retrofit2.http.GET

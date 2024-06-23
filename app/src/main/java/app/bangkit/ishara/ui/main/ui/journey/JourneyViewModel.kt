@@ -6,15 +6,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import app.bangkit.ishara.data.models.Item
-import app.bangkit.ishara.data.preferences.UserPreference
-import app.bangkit.ishara.data.preferences.dataStore
-import app.bangkit.ishara.data.requests.LoginRequest
-import app.bangkit.ishara.data.responses.journey.DataItem
-import app.bangkit.ishara.data.responses.journey.LevelsItem
-import app.bangkit.ishara.data.responses.login.error.LoginErrorResponse
+import app.bangkit.ishara.data.responses.journey.JourneyLevelItem
 import app.bangkit.ishara.data.retrofit.ApiConfig
-import app.bangkit.ishara.ui.auth.login.LoginViewModel
-import com.google.gson.Gson
 import kotlinx.coroutines.launch
 
 class JourneyViewModel : ViewModel() {
@@ -40,8 +33,8 @@ class JourneyViewModel : ViewModel() {
                         journeyItems.add(Item.StageItem(stagesData.copy()))
                         Log.d(TAG, "Journey items: $journeyItems")
                         journeyItems.addAll(stagesData.levels.map { levelData ->
-                            Item.LevelItem(
-                                LevelsItem(
+                            Item.StageLevelItem(
+                                JourneyLevelItem(
                                     name = levelData.name,
                                     id = levelData.id,
                                     isStageUnlocked = stagesData.isUnlocked,

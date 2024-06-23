@@ -47,11 +47,12 @@ class JourneyFragment : Fragment() {
                     is Item.StageItem -> {
                         // Do nothing
                     }
-                    is Item.LevelItem -> {
+                    is Item.StageLevelItem -> {
                         Log.d(TAG, "Level item clicked: ${data.levelData.name}")
                         Log.d(TAG, "Item clicked: $data")
                         if (data.levelData.isStageUnlocked == true) {
                             val intent = Intent(requireActivity(), GameActivity::class.java)
+                            intent.putExtra(GameActivity.QUIZ_LETTER_EXTRA_KEY, "A")
                             startActivity(intent)
                         } else {
                             // Do nothing

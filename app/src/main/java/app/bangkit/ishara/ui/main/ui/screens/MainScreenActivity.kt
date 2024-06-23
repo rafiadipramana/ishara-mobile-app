@@ -47,17 +47,13 @@ class MainScreenActivity : AppCompatActivity() {
             requestPermissionLauncher.launch(REQUIRED_PERMISSION)
         }
 
-        binding.topAppBar.setNavigationOnClickListener {
-            navController.navigate(R.id.navigation_home)
-        }
-
         setSupportActionBar(binding.topAppBar)
+
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment_activity_main2) as NavHostFragment
         navController = navHostFragment.navController
 
-//        val navView: BottomNavigationView = binding.navView
-//        val navController = findNavController(R.id.nav_host_fragment_activity_main2)
-//        navView.setupWithNavController(navController)
+        val navView: BottomNavigationView = binding.navView
+        navView.setupWithNavController(navController)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

@@ -4,10 +4,10 @@ import com.google.gson.annotations.SerializedName
 
 data class JourneyResponse(
 
-	@field:SerializedName("data")
-	val data: List<DataItem>,
+    @field:SerializedName("data")
+	val data: List<JourneyItem>,
 
-	@field:SerializedName("meta")
+    @field:SerializedName("meta")
 	val meta: Meta
 )
 
@@ -43,17 +43,17 @@ data class Pagination(
 
 data class Meta(
 
-	@field:SerializedName("pagination")
+    @field:SerializedName("pagination")
 	val pagination: Pagination,
 
-	@field:SerializedName("success")
+    @field:SerializedName("success")
 	val success: Boolean,
 
-	@field:SerializedName("message")
+    @field:SerializedName("message")
 	val message: String
 )
 
-data class LevelsItem(
+data class JourneyLevelItem(
 
 	@field:SerializedName("name")
 	val name: String,
@@ -68,7 +68,7 @@ data class LevelsItem(
 	val userLevelStar: UserLevelStar?
 )
 
-data class DataItem(
+data class JourneyItem(
 
 	@field:SerializedName("is_unlocked")
 	val isUnlocked: Boolean,
@@ -83,7 +83,7 @@ data class DataItem(
 	val id: Int,
 
 	@field:SerializedName("levels")
-	val levels: List<LevelsItem>
+	val levels: List<JourneyLevelItem>
 )
 
 data class UserLevelStar(

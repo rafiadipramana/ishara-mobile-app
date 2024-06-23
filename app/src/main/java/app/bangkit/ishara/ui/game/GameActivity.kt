@@ -1,6 +1,7 @@
 package app.bangkit.ishara.ui.game
 
 import android.content.Context
+import android.content.Intent
 import android.hardware.display.DisplayManager
 import android.os.Build
 import android.os.Bundle
@@ -130,14 +131,16 @@ class GameActivity : AppCompatActivity() {
         }, ContextCompat.getMainExecutor(this))
     }
 
+    private var isTrue: Boolean = false
     private fun checkLetter(letter: Char?) {
         val currentTime = System.currentTimeMillis()
 
         runOnUiThread {
             if (quizLetter.isNotEmpty() && letter == quizLetter[0]) {
-                showToast("Benar!")
-            } else {
-                showToast("Salah!")
+                if (!isTrue) {
+                    isTrue = true
+                    showToast("Benar!")
+                }
             }
         }
     }
@@ -161,7 +164,7 @@ class GameActivity : AppCompatActivity() {
 
     companion object {
         private const val TAG = "GameActivity"
-        private const val QUIZ_LETTER_EXTRA_KEY = "QUIZ_LETTER_EXTRA"
+        const val QUIZ_LETTER_EXTRA_KEY = "QUIZ_LETTER_EXTRA"
         const val EXTRA_CAMERAX_IMAGE = "CameraX Image"
         const val CAMERAX_RESULT = 200
     }
